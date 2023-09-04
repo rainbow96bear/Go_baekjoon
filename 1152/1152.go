@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main(){
@@ -12,19 +13,11 @@ func main(){
 
 	defer writer.Flush()
 
-	var answer int
-	s,_ := reader.ReadBytes('\n')
-
-	check := true
-	for _,v := range s {
-		if v != 32 && check ==true && v != 13 && v != 10 {
-			check = false
-			answer++
-		}else if v == 32 {
-			check = true
-		}
-	}
-
+	s,_ := reader.ReadString('\n')
+	// s = strings.TrimSpace(s)
+	stringSlice := strings.Split(s," ")
+	
+	answer := len(stringSlice)
 	
 	fmt.Fprintln(writer, answer)
 }
