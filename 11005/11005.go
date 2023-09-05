@@ -24,7 +24,7 @@ func main(){
 		if N%B <10 {
 			rst = append(rst,strconv.Itoa(N%B))
 		}else {
-			rst = append(rst,string('A'+N%B-10))
+			rst = append(rst,fmt.Sprint('A'+N%B-10))
 		}
 		N = N/B
 	}
