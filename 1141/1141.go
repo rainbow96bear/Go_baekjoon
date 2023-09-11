@@ -4,52 +4,38 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
+	"strings"
 )
 
-func main(){
-	reader := bufio.NewReader(os.Stdin)
-	writer := bufio.NewWriter(os.Stdout)
+func main() {
+    reader := bufio.NewReader(os.Stdin)
+    writer := bufio.NewWriter(os.Stdout)
 
-	defer writer.Flush()
+    defer writer.Flush()
 
-	var N int
-	fmt.Fscan(reader, &N)
+    var N int
+    fmt.Fscan(reader, &N)
 
-	strGroup := make([]string, N)
-	for i:=0 ; i<N ; i++{
-		fmt.Fscan(reader, &strGroup[i])
-	}
-	relate := make([][]int,N)
-	for i:=0 ; i<N ; i++ {
-		for j:=0 ; j<N ; j++ {
-			if i == j {
-				continue
-			}
-			check := checkInclude(strGroup[i], strGroup[j])
-			if check {
-				relate[i] = append(relate[i], j)
-			}
-		}
-	}
-	answer := 0
+    strGroup := make([]string, N)
+    for i := 0; i < N; i++ {
+        fmt.Fscan(reader, &strGroup[i])
+    }
 
-	fmt.Fprint(writer, answer)
-}
+    sort.Slice(strGroup, func(i, j int) bool {
+        return len(strGroup[i]) < len(strGroup[j])
+    })
 
-func checkInclude(strA, strB string) bool{
-	
-	length := len(strA)
-	if  len(strB) < length  {
-		length = len(strB)
-	}
+    answer := N
 
-	include := true
-	for k:=0 ; k<length ; k++{	
-		if strA[k] != strB[k]{
-			include = false
-			break
-		}
-	}
-	
-	return include
+    for i := 0; i < N; i++ {
+        for j := i + 1; j < N; j++ {
+            if strings.HasPrefix(strGroup[j], strGroup[i]) {
+                answer--
+                break
+            }
+        }
+    }
+
+    fmt.Fprint(writer, answer)
 }
