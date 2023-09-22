@@ -14,7 +14,11 @@ func main(){
 
 	var n int
 	fmt.Fscan(reader, &n)
-
+	if n == 1 {
+		fmt.Fprintln(writer, 1)
+		return
+	}
+	
 	dp := make([]int, n+1)
 
     dp[1] = 1
