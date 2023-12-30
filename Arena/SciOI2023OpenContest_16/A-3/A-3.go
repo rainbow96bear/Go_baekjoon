@@ -26,22 +26,22 @@ func main(){
 		StudentScoreList[i] = Score{middleScore:middleScore,lastScore: lastScore }
 	}
 
-	result := FindMinUnBalanceRate(N, StudentScoreList)
-	fmt.Fprintln(writer, result)
+	// result := FindMinUnBalanceRate(N, StudentScoreList)
+	// fmt.Fprintln(writer, result)
 }
 
-func FindMinUnBalanceRate(N int, StudentScoreList []Score) (rate int) {
-	Group := make([]Score, 3)
-	for n:=1 ; n<=N ; n++ {
-		middleScore := StudentScoreList[n].middleScore
-		lastScore := StudentScoreList[n].lastScore
-		for i:=0 ; i<3 ; i++ {
-			if middleScore > Group[i].middleScore && lastScore > Group[i].lastScore {
+// func FindMinUnBalanceRate(N int, StudentScoreList []Score) (rate int) {
+// 	Group := make([]Score, 3)
+// 	for n:=1 ; n<=N ; n++ {
+// 		middleScore := StudentScoreList[n].middleScore
+// 		lastScore := StudentScoreList[n].lastScore
+// 		for i:=0 ; i<3 ; i++ {
+// 			if middleScore > Group[i].middleScore && lastScore > Group[i].lastScore {
 				
-			}
-		}
-	}
-}
+// 			}
+// 		}
+// 	}
+// }
 
 func min(a, b int) int {
 	if a < b {
