@@ -8,7 +8,6 @@ import (
 )
 var (
 	list = []int{}
-	numList = []int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0}
 	isAdd = make(map[int]bool)
 )
 func main(){
@@ -38,6 +37,6 @@ func dfs(num, index int) {
 	}
 
 
-	dfs(num*10+numList[index], index+1)
+	dfs(num*10+(9-index), index+1)
 	dfs(num, index+1)
 }
